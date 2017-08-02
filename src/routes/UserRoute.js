@@ -4,7 +4,6 @@ import Utils from '../utils';
 
 let router = Express.Router();
 
-//POST URL: localhost:8080/api/user?username=testusername&email=testemail&password=testpassword&api_key=testapikey&api_secret=testapisecret
 router.route('/user')
 		.post(function(req, res) {
 
@@ -21,9 +20,8 @@ router.route('/user')
 			  .then(function(result) {
 			  	res.send(result);
 			  })
-			  .catch(function(error) {
-			  	console.log(error);
-			  	res.send(error);
+			  .catch((err) => {
+				  res.sendStatus(400);
 			  })
 
 		})
@@ -52,6 +50,8 @@ router.route('/showEditableUserFields')
 				})
 				.then(function(result) {
 					res.send(result);
+				}).catch((err) => {
+				  	res.sendStatus(400);
 				})
 			}
 			catch(error) {
@@ -78,6 +78,8 @@ router.route('/editUser')
 				})
 				.then(function(result) {
 					res.send(result);
+				}).catch((err) => {
+				  	res.sendStatus(400);
 				})
 			}
 			catch(error) {
@@ -99,6 +101,8 @@ router.route('/verifyEmail')
 				})
 				.then(function(result) {
 					res.send(result);
+				}).catch((err) => {
+				  	res.sendStatus(400);
 				})
 			}
 			catch(error) {

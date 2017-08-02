@@ -4,7 +4,6 @@ import Utils from '../utils';
 
 let router = Express.Router();
 
-//POST URL: localhost:8080/api/user?username=testusername&email=testemail&password=testpassword&api_key=testapikey&api_secret=testapisecret
 router.route('/users_have_projects')
 		.post(function(req, res) {
 
@@ -18,11 +17,9 @@ router.route('/users_have_projects')
 			  .then(function(result) {
 			  	res.send(result);
 			  })
-			  .catch(function(error) {
-			  	console.log(error);
-			  	res.send(error);
+			  .catch((err) => {
+				  res.sendStatus(400);
 			  })
-
 		})
 
 		.get(function(req, res) {
