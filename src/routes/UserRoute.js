@@ -60,4 +60,30 @@ router.route('/showEditableUserFields')
 			
 		});
 
+router.route('/editUser')
+		.post(function(req, res) {
+			try{
+				Model.User.update({
+					Username: req.body.username,
+					Firstname: req.body.firstname,
+					Lastname: req.body.lastname,
+					Email: req.body.email,
+					Email_verified: req.body.email_verified,
+					Description: req.body.description
+				},
+				{
+					where: {
+						GUID: req.body.userguid
+					}
+				})
+				.then(function(result) {
+					res.send(result);
+				})
+			}
+			catch(error) {
+				res.send(error);
+			}
+			
+		});
+
 module.exports = router;
