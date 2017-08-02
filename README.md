@@ -1,4 +1,5 @@
 # Table of Content
+- [Table of Content](#table-of-content)
 - [projectAlpha](#projectalpha)
   * [Getting Started](#getting-started)
     + [Prerequisites](#prerequisites)
@@ -12,6 +13,7 @@
     + [/editProject](#-editproject)
     + [/showProjectDetails](#-showprojectdetails)
     + [/verifyEmail](#-verifyemail)
+    + [/showUserProjects](#-showuserprojects)
   * [Authors](#authors)
   * [License](#license)
   * [Acknowledgments](#acknowledgments)
@@ -128,6 +130,13 @@ XYZ.sync({force: true});
     * userguid: GUID
 3. output:
     * 200 Ok
+------
+### /showUserProjects
+1. route: /api/showUserProjects
+2. input:
+    * userguid: GUID
+3. output:
+    * [GUID{title: string, description: string}, ...]
 ------
 ## Authors
 
