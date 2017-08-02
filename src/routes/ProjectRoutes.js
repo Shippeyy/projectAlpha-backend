@@ -97,4 +97,27 @@ router.route('/showEditableProjectFields')
 			
 		});
 
+router.route('/editProject')
+		.post(function(req, res) {
+			try{
+				Model.Project.update({
+					Title: req.body.title,
+					Gitlink: req.body.gitlink,
+					Description: req.body.description
+				},
+				{
+					where: {
+						GUID: req.body.projectguid
+					}
+				})
+				.then(function(result) {
+					res.send(result);
+				})
+			}
+			catch(error) {
+				res.send(error);
+			}
+			
+		});
+
 module.exports = router;
