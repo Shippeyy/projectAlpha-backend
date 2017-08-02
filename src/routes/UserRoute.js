@@ -109,6 +109,5 @@ router.route('/verifyEmail')
 				res.send(error);
 			}
 		});
-			
-
+		
 module.exports = router;

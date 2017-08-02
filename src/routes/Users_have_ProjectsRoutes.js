@@ -35,4 +35,23 @@ router.route('/users_have_projects')
 			
 		});
 
+router.route('/showUserProjects')
+		.post(function(req, res) {
+			try{
+				Model.Users_have_Projects.findAll({
+					where: {
+						UserGUID: req.body.userguid
+					}
+				})
+				.then(function(result) {
+					res.send(result);
+				}).catch((err) => {
+				  	res.sendStatus(400);
+				})
+			}
+			catch(error) {
+				res.send(error);
+			}
+			
+		});
 module.exports = router;
