@@ -1,3 +1,21 @@
+# Table of Content
+- [projectAlpha](#projectalpha)
+  * [Getting Started](#getting-started)
+    + [Prerequisites](#prerequisites)
+      - [Nodejs + npm](#nodejs---npm)
+    + [Installation](#installation)
+  * [Object Relational Mapper](#object-relational-mapper)
+  * [Routes](#routes)
+    + [/showEditableUserFields](#-showeditableuserfields)
+    + [/editUser](#-edituser)
+    + [/showEditableProjectFields](#-showeditableprojectfields)
+    + [/editProject](#-editproject)
+    + [/showProjectDetails](#-showprojectdetails)
+    + [/verifyEmail](#-verifyemail)
+  * [Authors](#authors)
+  * [License](#license)
+  * [Acknowledgments](#acknowledgments)
+
 # projectAlpha
 
 private project for learning best practices for Nodejs and webservices in general
@@ -48,6 +66,69 @@ XYZ.sync({force: true});
 
 **note: existing data in the database will be lost if force is set to true**
 
+## Routes
+### /showEditableUserFields
+1. route: /api/editUser (get)
+2. input:
+    * userguid: GUID
+3. output (returns all editable fields):
+    * username: String
+    * firstname: String
+    * lastname: String
+    * email: String
+    * email_verified: boolean
+    * description: String
+------
+### /editUser
+1. route: /api/editUser (post)
+2. input (includes all editable fields, even if they are not changed):
+    * userguid: GUID
+    * username: String
+    * firstname: String
+    * lastname: String
+    * email: String
+    * email_verified: boolean
+    * description: String
+3. output:
+    * 200 Ok
+------
+### /showEditableProjectFields
+1. route: /api/editProject (get)
+2. input:
+    * projectguid: GUID
+3. output (returns all editable fields):
+    * title: String
+    * gitlink: String
+    * description: String
+------
+### /editProject
+1. route: /api/editProject
+2. input (includes all editable fields, even if they are not changed):
+    * projectguid: GUID
+    * title: String
+    * gitlink: String
+    * description: String
+3. output:
+    * 200 Ok
+------
+### /showProjectDetails
+1. route: /api/showProjectDetails
+2. input:
+    * projectguid: GUID
+3. output:
+    * guid: GUID
+    * title: String
+    * gitlink: String
+    * description: String
+    * projectCreation_timestamp: DateTimestamp
+------
+### /verifyEmail
+1. route: /api/verifyEmail
+2. input:
+    * userguid: GUID
+3. output:
+    * 200 Ok
+------
 ## Authors
 
 * **Julian Palmanshofer** -  [Shippeyy](https://github.com/Shippeyy)
