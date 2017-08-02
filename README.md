@@ -16,7 +16,7 @@ What things you need to install the software and how to install them
 **note: the versions which were used during development are**
 * Nodejs: v8.1.2
 * npm: v5.0.3
-### Installing
+### Installation
 
 A step by step series of examples that tell you have to get a development env running
 
@@ -36,9 +36,21 @@ running the webservice
 ```
 npm run start
 ```
+## Object Relational Mapper
+The object relational mapper (ORM) uses the sequlize library in order to connect to a postgreSQL database.
+
+If a creation script for the database is needed, the ORM can be modified in a way, that it creates the database schema
+itself.
+This can be done by going into each individuell table file in the folder **root/src/models/XYZ** (replace XYZ with the tablename) and adjusting the following field:
+```
+XYZ.sync({force: true});
+```
+
+**note: existing data in the database will be lost if force is set to true**
+
 ## Authors
 
-* **Julian Palmanshofer** - [Shippeyy](https://github.com/Shippeyy)
+* **Julian Palmanshofer** -  [Shippeyy](https://github.com/Shippeyy)
 
 ## License
 
@@ -46,6 +58,5 @@ This project is licensed under the MIT License - see the [LICENSE.md](LICENSE.md
 
 ## Acknowledgments
 
-* thanks to Michael Bartl for assisting me with the implementation at some points [astwys](https://github.com/astwys)
-* Hat tip to anyone who's code was usedhttps://github.com/Astwys
+* Hat tip to anyone who's code was used
 
