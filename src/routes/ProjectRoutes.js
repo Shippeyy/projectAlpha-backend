@@ -60,4 +60,41 @@ router.route('/showProjectDetails')
 			
 		});
 
+router.route('/showProjectDetails')
+		.post(function(req, res) {
+			try{
+				Model.Project.findOne({
+					where: {
+						GUID: req.body.projectguid
+					}
+				})
+				.then(function(result) {
+					res.send(result);
+				})
+			}
+			catch(error) {
+				res.send(error);
+			}
+			
+		});
+
+router.route('/showEditableProjectFields')
+		.post(function(req, res) {
+			try{
+				Model.Project.findOne({
+					where: {
+						GUID: req.body.projectguid
+					},
+					attributes: ['Title', 'Gitlink', 'Description']
+				})
+				.then(function(result) {
+					res.send(result);
+				})
+			}
+			catch(error) {
+				res.send(error);
+			}
+			
+		});
+
 module.exports = router;
