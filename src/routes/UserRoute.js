@@ -86,4 +86,25 @@ router.route('/editUser')
 			
 		});
 
+router.route('/verifyEmail')
+		.post(function(req, res) {
+			try{
+				Model.User.update({
+					Email_verified: true,
+				},
+				{
+					where: {
+						GUID: req.body.userguid
+					}
+				})
+				.then(function(result) {
+					res.send(result);
+				})
+			}
+			catch(error) {
+				res.send(error);
+			}
+		});
+			
+
 module.exports = router;
