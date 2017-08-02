@@ -41,4 +41,23 @@ router.route('/user')
 			
 		});
 
+router.route('/showEditableUserFields')
+		.post(function(req, res) {
+			try{
+				Model.User.findOne({
+					where: {
+						GUID: req.body.userguid
+					},
+					attributes: ['Username', 'Firstname', 'Lastname', 'Email', 'Email_verified', 'Description']
+				})
+				.then(function(result) {
+					res.send(result);
+				})
+			}
+			catch(error) {
+				res.send(error);
+			}
+			
+		});
+
 module.exports = router;
