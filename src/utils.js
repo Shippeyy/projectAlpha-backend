@@ -17,5 +17,7 @@ module.exports.createApp = function() {
   app.use(router);
   app.use('/api', router);
 
+  console.log(model);
+
   return app;
 }

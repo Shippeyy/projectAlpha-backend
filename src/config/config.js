@@ -1,7 +1,7 @@
 module.exports =
 {
 	postgresql: {
-		connectionString: 'postgres://user:pass@example.com:5432/dbname'
+		connectionString: 'postgres://postgres:root@localhost:5432/projectAlpha'
 	},
 	server: {
 		port: {
