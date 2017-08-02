@@ -1,0 +1,33 @@
+{
+  "name": "project_alpha",
+  "version": "1.0.0",
+  "description": "webservice for the project \"projectAlpha\"",
+  "main": "server.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "build": "babel src -d lib",
+    "start": "npm run build && node lib/server.js"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/Shippeyy/project_alpha.git"
+  },
+  "author": "Julian Palmanshofer",
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/Shippeyy/project_alpha/issues"
+  },
+  "homepage": "https://github.com/Shippeyy/project_alpha#readme",
+  "devDependencies": {
+    "babel-cli": "6.24.1",
+    "babel-core": "6.25.0",
+    "babel-preset-env": "1.6.0"
+  },
+  "dependencies": {
+    "body-parser": "1.17.2",
+    "express": "4.15.3",
+    "helmet": "3.8.1",
+    "pg": "7.0.2",
+    "sequelize": "4.4.2"
+  }
+}
