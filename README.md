@@ -46,5 +46,6 @@ This project is licensed under the MIT License - see the [LICENSE.md](LICENSE.md
 
 ## Acknowledgments
 
-* Hat tip to anyone who's code was used
+* thanks to Michael Bartl for assisting me with the implementation at some points [astwys](https://github.com/astwys)
+* Hat tip to anyone who's code was usedhttps://github.com/Astwys
 
