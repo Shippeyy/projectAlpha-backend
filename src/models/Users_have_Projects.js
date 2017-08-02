@@ -22,7 +22,7 @@ const Users_have_Projects = function (sequelize){
 		PermissionlevelGUID: {
 			type: Sequelize.UUID,
 			allowNull: true,
-			field: "Permissionlevel"
+			field: "PermissionlevelGUID"
 		}
 	},
 	{
@@ -38,7 +38,7 @@ const Users_have_Projects = function (sequelize){
 		}
 	});
 
-    Users_have_Projects.sync({force: true});
+    Users_have_Projects.sync({force: false});
 
     return Users_have_Projects;
 };

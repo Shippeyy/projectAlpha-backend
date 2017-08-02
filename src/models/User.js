@@ -60,7 +60,7 @@ const User = function (sequelize){
 		}
 	});
 
-    User.sync({force: true});
+    User.sync({force: false});
 
     return User;
 };

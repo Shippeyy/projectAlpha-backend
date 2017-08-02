@@ -39,4 +39,25 @@ router.route('/project')
 			
 		});
 
+router.route('/showProjectDetails')
+		.post(function(req, res) {
+			try{
+				Model.Project.findOne({
+					where: {
+						GUID: req.body.projectguid
+					}
+				})
+				.then(function(result) {
+					console.log(req.body.projectguid);
+					res.send(result);
+				})
+			}
+			catch(error) {
+				console.log('false');
+				console.log(req.body.projectguid);
+				res.send(error);
+			}
+			
+		});
+
 module.exports = router;

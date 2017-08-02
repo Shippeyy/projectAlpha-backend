@@ -32,7 +32,7 @@ const Permissionlevel = function (sequelize){
 		}
 	});
 
-    Permissionlevel.sync({force: true});
+    Permissionlevel.sync({force: false});
 
     return Permissionlevel;
 };

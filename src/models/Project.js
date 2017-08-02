@@ -43,7 +43,7 @@ const Project = function (sequelize){
 		}
 	});
 
-    Project.sync({force: true});
+    Project.sync({force: false});
 
     return Project;
 };
