@@ -1,15 +1,20 @@
 import Express from 'express';
 import Model from '../models/model';
 import Utils from '../utils';
+import helper from '../helpermethods/AuthenticationHelper';
 
 let router = Express.Router();
 
 router.route('/user')
 		.post(function(req, res) {
 
+			let credentials = helper.hashPassword(req.body.password);
+
 			Model.User
 			  .build({
 			  	Username: req.body.username,
+			  	Password: credentials.hash,
+			  	Salt: credentials.salt,
 				Firstname: req.body.firstname,
 				Lastname: req.body.lastname,
 				Email: req.body.email,

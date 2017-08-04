@@ -1,10 +1,10 @@
-const express = require ('express');
-const bodyParser = require ('body-parser');
-const sequelize = require ('sequelize');
-const config = require ('./config/config');
-const router = require ('./routes/router');
-const helmet = require ('helmet');
-const model = require ('./models/model');
+import express from 'express';
+import bodyParser from 'body-parser';
+import sequelize from 'sequelize';
+import config from './config/config';
+import router from './routes/router';
+import helmet from 'helmet';
+import model from './models/model';
 
 module.exports.createApp = function() {
   var app = express();
@@ -16,8 +16,6 @@ module.exports.createApp = function() {
 
   app.use(router);
   app.use('/api', router);
-
-  console.log(model);
 
   return app;
 }
