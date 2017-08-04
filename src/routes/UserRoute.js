@@ -47,9 +47,13 @@ router.route('/user')
 router.route('/updatePassword')
 		.post(function(req, res) {
 			try{
+				if(!req.session.userguid) {
+					res.sendStatus(401);
+					return null;
+				}
 				Model.User.findOne({
 					where: {
-						GUID: req.body.userguid
+						GUID: req.session.userguid
 					},
 					attributes: ['GUID', 'Password', 'Salt']
 				})
@@ -77,9 +81,13 @@ router.route('/updatePassword')
 router.route('/showEditableUserFields')
 		.post(function(req, res) {
 			try{
+				if(!req.session.userguid) {
+					res.sendStatus(401);
+					return null;
+				}
 				Model.User.findOne({
 					where: {
-						GUID: req.body.userguid
+						GUID: req.session.userguid
 					},
 					attributes: ['Username', 'Firstname', 'Lastname', 'Email', 'Email_verified', 'Description']
 				})
@@ -98,6 +106,10 @@ router.route('/showEditableUserFields')
 router.route('/editUser')
 		.post(function(req, res) {
 			try{
+				if(!req.session.userguid) {
+					res.sendStatus(401);
+					return null;
+				}
 				Model.User.update({
 					Username: req.body.username,
 					Firstname: req.body.firstname,
@@ -108,7 +120,7 @@ router.route('/editUser')
 				},
 				{
 					where: {
-						GUID: req.body.userguid
+						GUID: req.session.userguid
 					}
 				})
 				.then(function(result) {
@@ -126,12 +138,16 @@ router.route('/editUser')
 router.route('/verifyEmail')
 		.post(function(req, res) {
 			try{
+				if(!req.session.userguid) {
+					res.sendStatus(401);
+					return null;
+				}
 				Model.User.update({
 					Email_verified: true,
 				},
 				{
 					where: {
-						GUID: req.body.userguid
+						GUID: req.session.userguid
 					}
 				})
 				.then(function(result) {

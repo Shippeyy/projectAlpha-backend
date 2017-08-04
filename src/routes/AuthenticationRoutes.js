@@ -15,7 +15,6 @@ router.route('/auth/login')
 			  })
 			  .then(function(result) {
 			  	let hash = authenticationHelper.hashPasswordWithSalt(req.body.password, result.Salt);
-			  	console.log("0");
 			  	if(hash==result.Password) {
 			  		req.session.userguid = result.GUID;
 			  		req.session.cookie.maxAge = 24 * 60 * 60 * 1000;
@@ -32,7 +31,6 @@ router.route('/auth/login')
 router.route('/auth/logout')
 		.post(function(req, res) {
 			try {
-				console.log("session: " + req.session.userguid);
 				req.session.destroy(function(result){
 					res.sendStatus(200);
 				})
