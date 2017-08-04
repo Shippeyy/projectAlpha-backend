@@ -177,5 +177,22 @@ router.route('/verifyEmail')
 				res.send(error);
 			}
 		});
+
+router.route('/getCurrentUser')
+		.get(function(req, res) {
+			try{
+				if(!req.session.userguid) {
+					logger.log(config.log.level, 'ROUTE CALLED: /getCurrentUser; RESULT: 401');
+					res.sendStatus(401);
+				}
+				else {
+					logger.log(config.log.level, 'ROUTE CALLED: /getCurrentUser; RESULT: ' + req.session.userguid);
+					res.send(req.session.userguid);
+				}	
+			}
+			catch(error) {
+				res.send(error);
+			}
+		})
 		
 module.exports = router;

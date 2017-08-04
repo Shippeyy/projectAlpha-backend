@@ -13,5 +13,9 @@ module.exports =
 	},
 	log: {
 		level: 'info'
+	},
+	version: {
+		currentState: 'alpha',
+		version: '0.1.1'
 	}
 };

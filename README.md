@@ -4,6 +4,7 @@
     + [Prerequisites](#prerequisites)
       - [Nodejs + npm](#nodejs---npm)
     + [Installation](#installation)
+    + [Configuration](#configuration)
   * [Object Relational Mapper](#object-relational-mapper)
   * [Routes](#routes)
     + [/showEditableUserFields](#-showeditableuserfields)
@@ -16,11 +17,10 @@
     + [/showUserProjects](#-showuserprojects)
     + [/auth/logout](#-auth-logout)
     + [/auth/login](#-auth-login)
+    + [/getCurrentUser](#-getcurrentuser)
   * [Authors](#authors)
   * [License](#license)
   * [Acknowledgments](#acknowledgments)
-
-
 
 # projectAlpha
 
@@ -60,6 +60,35 @@ running the webservice
 ```
 npm run start
 ```
+
+### Configuration
+The folder root/config is missing the file config.js as it was added to the gitignore for security reasons (the file contains sensitive data such as credentials for various services).
+
+Please add the missing file by pasting and filling out following schema:
+```
+module.exports =
+{
+    postgresql: {
+        connectionString: 'DATABASECONNECTIONSTRING'
+    },
+    server: {
+        port: {
+            http: 8080
+        }
+    },
+    session: {
+        secret: 'SECRETFORSESSIONENCRYPTION'
+    },
+    log: {
+        level: 'info'
+    },
+    version: {
+        currentState: 'alpha',
+        version: '0.1.1'
+    }
+};
+```
+
 ## Object Relational Mapper
 The object relational mapper (ORM) uses the sequlize library in order to connect to a postgreSQL database.
 
@@ -166,6 +195,12 @@ XYZ.sync({force: true});
     * 200 Ok
 **note: creates session for logged in user**
 ------
+### /getCurrentUser
+1. route: /api/getCurrentUser
+2. input:
+3. output:
+    * userguid: GUID
+------
 ## Authors
 
 * **Julian Palmanshofer** -  [Shippeyy](https://github.com/Shippeyy)
@@ -176,5 +211,5 @@ This project is licensed under the MIT License - see the [LICENSE.md](LICENSE.md
 
 ## Acknowledgments
 
-* Hat tip to anyone who's code was used
+* Hat tip to anyone who's code was used (for example third party libraries)
 
