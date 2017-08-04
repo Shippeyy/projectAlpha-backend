@@ -1,7 +1,7 @@
 import Express from 'express';
 import Model from '../models/model';
 import Utils from '../utils';
-import helper from '../helpermethods/AuthenticationHelper';
+import authenticationHelper from '../helpermethods/AuthenticationHelper';
 
 let router = Express.Router();
 
@@ -14,8 +14,12 @@ router.route('/auth/login')
 			  	attributes: ['GUID', 'Username', 'Password', 'Salt']
 			  })
 			  .then(function(result) {
-			  	let hash = helper.hashPasswordWithSalt(req.body.password, result.Salt);
-			  	if(hash==result.Password) res.sendStatus(200);
+			  	let hash = authenticationHelper.hashPasswordWithSalt(req.body.password, result.Salt);
+			  	if(hash==result.Password) {
+			  		req.session.userguid = result.GUID;
+			  		req.session.cookie.maxAge = 24 * 60 * 60 * 1000;
+			  		res.sendStatus(200);
+			  	}
 			  	else res.sendStatus(401);
 			  })
 			  .catch((err) => {
@@ -23,5 +27,18 @@ router.route('/auth/login')
 				})
 
 		});
+
+router.route('/auth/logout')
+		.post(function(req, res) {
+			try {
+				req.session.destroy(function(result){
+					res.sendStatus(200);
+				})
+			}
+			catch(err) {
+				res.sendStatus(400)
+			}
+		})
+
 
 module.exports = router;

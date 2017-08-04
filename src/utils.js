@@ -5,6 +5,8 @@ import config from './config/config';
 import router from './routes/router';
 import helmet from 'helmet';
 import model from './models/model';
+import cookieParser from 'cookie-parser';
+import expressSession from 'express-session';
 
 module.exports.createApp = function() {
   var app = express();
@@ -13,6 +15,16 @@ module.exports.createApp = function() {
   app.use(bodyParser.json());
 
   app.use(helmet());
+
+  app.use(cookieParser());
+  app.use(expressSession({
+  	secret: config.session.secret,
+  	resave: false,
+	saveUninitialized: false,
+  	cookie: {
+  		maxAge: 86400000
+  	}
+  }));
 
   app.use(router);
   app.use('/api', router);

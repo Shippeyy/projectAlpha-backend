@@ -69,3 +69,5 @@ lib/
 
 *.pub
 *.ppk
+
+config.js
