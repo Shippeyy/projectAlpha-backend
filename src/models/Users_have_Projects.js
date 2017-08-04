@@ -23,6 +23,11 @@ const Users_have_Projects = function (sequelize){
 			type: Sequelize.UUID,
 			allowNull: true,
 			field: "PermissionlevelGUID"
+		},
+		Public: {
+			type: Sequelize.BOOLEAN,
+			allowNull: true,
+			field: "Public"
 		}
 	},
 	{
@@ -38,7 +43,7 @@ const Users_have_Projects = function (sequelize){
 		}
 	});
 
-    Users_have_Projects.sync({force: false});
+    Users_have_Projects.sync({force: true});
 
     return Users_have_Projects;
 };

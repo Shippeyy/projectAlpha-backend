@@ -13,7 +13,8 @@ router.route('/users_have_projects')
 			  .build({
 			  	UserGUID: req.body.userguid,
 				ProjectGUID: req.body.projectguid,
-				PermissionlevelGUID: req.body.permissionlevelguid
+				PermissionlevelGUID: req.body.permissionlevelguid,
+				Public: req.body.public
 			  })
 			  .save()
 			  .then(function(result) {
@@ -49,8 +50,23 @@ router.route('/showUserProjects')
 					}
 				})
 				.then(function(result) {
-					logger.log(config.log.level, 'ROUTE CALLED: /showUserProjects; RESULT: ' + result);
-					res.send(result);
+					if(typeof req.session.userguid !== 'undefined' && req.session.userguid !== null){
+						if(req.session.userguid == result.GUID) {
+							logger.log(config.log.level, 'ROUTE CALLED: /showUserProjects; RESULT: ' + result);
+							res.send(result);
+						}
+					}
+					else {
+						if(result.Public == true) {
+							logger.log(config.log.level, 'ROUTE CALLED: /showUserProjects; RESULT: ' + result);
+							res.send(result);
+						}
+						else{
+							logger.log(config.log.level, 'ROUTE CALLED: /showUserProjects; RESULT: 401');
+							res.sendStatus(401);
+						}
+					}
+
 				}).catch((err) => {
 					logger.log(config.log.level, 'ROUTE CALLED: /showUserProjects; RESULT: 400');
 				  	res.sendStatus(400);
