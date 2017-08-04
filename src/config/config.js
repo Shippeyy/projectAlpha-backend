@@ -7,5 +7,8 @@ module.exports =
 		port: {
 			http: 8080
 		}
+	},
+	session: {
+		secret: 'highlysecretandunhackablesecret'
 	}
 };
