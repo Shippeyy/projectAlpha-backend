@@ -44,6 +44,36 @@ router.route('/user')
 			
 		});
 
+router.route('/updatePassword')
+		.post(function(req, res) {
+			try{
+				Model.User.findOne({
+					where: {
+						GUID: req.body.userguid
+					},
+					attributes: ['GUID', 'Password', 'Salt']
+				})
+				.then(function(result) {
+					let credentials = helper.hashPassword(req.body.password);
+					Model.User.update({
+						Password: credentials.hash,
+						Salt: credentials.salt
+					},{
+						where: {
+							GUID: result.GUID
+						}
+					});
+					res.sendStatus(200);
+				}).catch((err) => {
+				  	res.sendStatus(400);
+				})
+			}
+			catch(error) {
+				res.send(error);
+			}
+			
+		});
+
 router.route('/showEditableUserFields')
 		.post(function(req, res) {
 			try{
