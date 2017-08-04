@@ -1,15 +1,20 @@
 import Express from 'express';
 import Model from '../models/model';
 import Utils from '../utils';
+import helper from '../helpermethods/AuthenticationHelper';
 
 let router = Express.Router();
 
 router.route('/user')
 		.post(function(req, res) {
 
+			let credentials = helper.hashPassword(req.body.password);
+
 			Model.User
 			  .build({
 			  	Username: req.body.username,
+			  	Password: credentials.hash,
+			  	Salt: credentials.salt,
 				Firstname: req.body.firstname,
 				Lastname: req.body.lastname,
 				Email: req.body.email,
@@ -31,6 +36,36 @@ router.route('/user')
 				Model.User.findAll()
 				.then(function(result) {
 					res.send(result);
+				})
+			}
+			catch(error) {
+				res.send(error);
+			}
+			
+		});
+
+router.route('/updatePassword')
+		.post(function(req, res) {
+			try{
+				Model.User.findOne({
+					where: {
+						GUID: req.body.userguid
+					},
+					attributes: ['GUID', 'Password', 'Salt']
+				})
+				.then(function(result) {
+					let credentials = helper.hashPassword(req.body.password);
+					Model.User.update({
+						Password: credentials.hash,
+						Salt: credentials.salt
+					},{
+						where: {
+							GUID: result.GUID
+						}
+					});
+					res.sendStatus(200);
+				}).catch((err) => {
+				  	res.sendStatus(400);
 				})
 			}
 			catch(error) {

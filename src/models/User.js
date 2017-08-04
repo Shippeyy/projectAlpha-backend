@@ -14,6 +14,16 @@ const User = function (sequelize){
 			allowNull: false,
 			field: "Username"
 		},
+		Password: {
+			type: Sequelize.STRING,
+			allowNull: false,
+			field: "Password"
+		},
+		Salt: {
+			type: Sequelize.STRING,
+			allowNull: false,
+			field: "Salt"
+		},
 		Firstname: {
 			type: Sequelize.STRING,
 			allowNull: true,
