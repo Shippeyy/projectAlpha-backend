@@ -13,10 +13,12 @@
     + [/editProject](#-editproject)
     + [/showProjectDetails](#-showprojectdetails)
     + [/verifyEmail](#-verifyemail)
+    + [/updatePassword](#-updatepassword)
     + [/showUserProjects](#-showuserprojects)
   * [Authors](#authors)
   * [License](#license)
   * [Acknowledgments](#acknowledgments)
+
 
 # projectAlpha
 
@@ -130,6 +132,15 @@ XYZ.sync({force: true});
     * userguid: GUID
 3. output:
     * 200 Ok
+------
+### /updatePassword
+1. route: /api/updatePassword
+2. input:
+    * userguid: GUID
+    * password: String
+3. output:
+    * 200 Ok
+**note: also creates a new salt in the database for the user**
 ------
 ### /showUserProjects
 1. route: /api/showUserProjects
