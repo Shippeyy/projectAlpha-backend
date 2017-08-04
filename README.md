@@ -1,5 +1,4 @@
 # Table of Content
-- [Table of Content](#table-of-content)
 - [projectAlpha](#projectalpha)
   * [Getting Started](#getting-started)
     + [Prerequisites](#prerequisites)
@@ -15,9 +14,12 @@
     + [/verifyEmail](#-verifyemail)
     + [/updatePassword](#-updatepassword)
     + [/showUserProjects](#-showuserprojects)
+    + [/auth/logout](#-auth-logout)
+    + [/auth/login](#-auth-login)
   * [Authors](#authors)
   * [License](#license)
   * [Acknowledgments](#acknowledgments)
+
 
 
 # projectAlpha
@@ -74,7 +76,6 @@ XYZ.sync({force: true});
 ### /showEditableUserFields
 1. route: /api/editUser (get)
 2. input:
-    * userguid: GUID
 3. output (returns all editable fields):
     * username: String
     * firstname: String
@@ -82,11 +83,11 @@ XYZ.sync({force: true});
     * email: String
     * email_verified: boolean
     * description: String
+    **note: uses guid of logged in user**
 ------
 ### /editUser
-1. route: /api/editUser (post)
+1. route: /api/editUser
 2. input (includes all editable fields, even if they are not changed):
-    * userguid: GUID
     * username: String
     * firstname: String
     * lastname: String
@@ -95,6 +96,7 @@ XYZ.sync({force: true});
     * description: String
 3. output:
     * 200 Ok
+    **note: uses guid of logged in user**
 ------
 ### /showEditableProjectFields
 1. route: /api/editProject (get)
@@ -129,18 +131,17 @@ XYZ.sync({force: true});
 ### /verifyEmail
 1. route: /api/verifyEmail
 2. input:
-    * userguid: GUID
 3. output:
     * 200 Ok
+    **note: uses guid of logged in user**
 ------
 ### /updatePassword
 1. route: /api/updatePassword
 2. input:
-    * userguid: GUID
     * password: String
 3. output:
     * 200 Ok
-**note: also creates a new salt in the database for the user**
+**note: also creates a new salt in the database for the user; uses guid of logged in user**
 ------
 ### /showUserProjects
 1. route: /api/showUserProjects
@@ -148,6 +149,22 @@ XYZ.sync({force: true});
     * userguid: GUID
 3. output:
     * [GUID{title: string, description: string}, ...]
+------
+### /auth/logout
+1. route: /api/auth/logout 
+2. input:
+3. output:
+    * 200 Ok
+**note: destroys active session**
+------
+### /auth/login
+1. route: /api/auth/login
+2. input:
+    * username: String
+    * password: String
+3. output:
+    * 200 Ok
+**note: creates session for logged in user**
 ------
 ## Authors
 
