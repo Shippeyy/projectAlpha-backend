@@ -10,5 +10,8 @@ module.exports =
 	},
 	session: {
 		secret: 'highlysecretandunhackablesecret'
+	},
+	log: {
+		level: 'info'
 	}
 };

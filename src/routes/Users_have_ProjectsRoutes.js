@@ -1,6 +1,8 @@
 import Express from 'express';
 import Model from '../models/model';
 import Utils from '../utils';
+import logger from '../winston';
+import config from '../config/config';
 
 let router = Express.Router();
 
@@ -15,10 +17,12 @@ router.route('/users_have_projects')
 			  })
 			  .save()
 			  .then(function(result) {
+			  	logger.log(config.log.level, 'ROUTE CALLED: /users_have_projects; RESULT: ' + result);
 			  	res.send(result);
 			  })
 			  .catch((err) => {
-				  res.sendStatus(400);
+			  	logger.log(config.log.level, 'ROUTE CALLED: /users_have_projects; RESULT: 400');
+				res.sendStatus(400);
 			  })
 		})
 
@@ -26,6 +30,7 @@ router.route('/users_have_projects')
 			try{
 				Model.Users_have_Projects.findAll()
 				.then(function(result) {
+					logger.log(config.log.level, 'ROUTE CALLED: /users_have_projects; RESULT: ' + result);
 					res.send(result);
 				})
 			}
@@ -44,8 +49,10 @@ router.route('/showUserProjects')
 					}
 				})
 				.then(function(result) {
+					logger.log(config.log.level, 'ROUTE CALLED: /showUserProjects; RESULT: ' + result);
 					res.send(result);
 				}).catch((err) => {
+					logger.log(config.log.level, 'ROUTE CALLED: /showUserProjects; RESULT: 400');
 				  	res.sendStatus(400);
 				})
 			}

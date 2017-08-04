@@ -2,6 +2,8 @@ import Express from 'express';
 import Model from '../models/model';
 import Utils from '../utils';
 import helper from '../helpermethods/AuthenticationHelper';
+import logger from '../winston';
+import config from '../config/config';
 
 let router = Express.Router();
 
@@ -23,10 +25,12 @@ router.route('/user')
 			  })
 			  .save()
 			  .then(function(result) {
+			  	logger.log(config.log.level, 'ROUTE CALLED: /user; RESULT: ' + result);
 			  	res.send(result);
 			  })
 			  .catch((err) => {
-				  res.sendStatus(400);
+			  	logger.log(config.log.level, 'ROUTE CALLED: /user; RESULT: 400');
+				res.sendStatus(400);
 			  })
 
 		})
@@ -35,6 +39,7 @@ router.route('/user')
 			try{
 				Model.User.findAll()
 				.then(function(result) {
+					logger.log(config.log.level, 'ROUTE CALLED: /user; RESULT: ' + result);
 					res.send(result);
 				})
 			}
@@ -48,6 +53,7 @@ router.route('/updatePassword')
 		.post(function(req, res) {
 			try{
 				if(!req.session.userguid) {
+					logger.log(config.log.level, 'ROUTE CALLED: /updatePassword; RESULT: 401');
 					res.sendStatus(401);
 					return null;
 				}
@@ -67,8 +73,10 @@ router.route('/updatePassword')
 							GUID: result.GUID
 						}
 					});
+					logger.log(config.log.level, 'ROUTE CALLED: /updatePassword; RESULT: 200');
 					res.sendStatus(200);
 				}).catch((err) => {
+					logger.log(config.log.level, 'ROUTE CALLED: /updatePassword; RESULT: 400');
 				  	res.sendStatus(400);
 				})
 			}
@@ -82,6 +90,7 @@ router.route('/showEditableUserFields')
 		.post(function(req, res) {
 			try{
 				if(!req.session.userguid) {
+					logger.log(config.log.level, 'ROUTE CALLED: /showEditableUserFields; RESULT: 401');
 					res.sendStatus(401);
 					return null;
 				}
@@ -92,8 +101,10 @@ router.route('/showEditableUserFields')
 					attributes: ['Username', 'Firstname', 'Lastname', 'Email', 'Email_verified', 'Description']
 				})
 				.then(function(result) {
+					logger.log(config.log.level, 'ROUTE CALLED: /showEditableUserFields; RESULT: ' + result);
 					res.send(result);
 				}).catch((err) => {
+					logger.log(config.log.level, 'ROUTE CALLED: /showEditableUserFields; RESULT: 400');
 				  	res.sendStatus(400);
 				})
 			}
@@ -107,6 +118,7 @@ router.route('/editUser')
 		.post(function(req, res) {
 			try{
 				if(!req.session.userguid) {
+					logger.log(config.log.level, 'ROUTE CALLED: /editUser; RESULT: 401');
 					res.sendStatus(401);
 					return null;
 				}
@@ -124,8 +136,10 @@ router.route('/editUser')
 					}
 				})
 				.then(function(result) {
+					logger.log(config.log.level, 'ROUTE CALLED: /editUser; RESULT: ' + result);
 					res.send(result);
 				}).catch((err) => {
+					logger.log(config.log.level, 'ROUTE CALLED: /editUser; RESULT: 400');
 				  	res.sendStatus(400);
 				})
 			}
@@ -139,6 +153,7 @@ router.route('/verifyEmail')
 		.post(function(req, res) {
 			try{
 				if(!req.session.userguid) {
+					logger.log(config.log.level, 'ROUTE CALLED: /verifyEmail; RESULT: 401');
 					res.sendStatus(401);
 					return null;
 				}
@@ -151,8 +166,10 @@ router.route('/verifyEmail')
 					}
 				})
 				.then(function(result) {
+					logger.log(config.log.level, 'ROUTE CALLED: /verifyEmail; RESULT: ' + result);
 					res.send(result);
 				}).catch((err) => {
+					logger.log(config.log.level, 'ROUTE CALLED: /verifyEmail; RESULT: 400');
 				  	res.sendStatus(400);
 				})
 			}

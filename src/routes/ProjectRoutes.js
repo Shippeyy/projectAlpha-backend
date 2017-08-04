@@ -1,6 +1,8 @@
 import Express from 'express';
 import Model from '../models/model';
 import Utils from '../utils';
+import logger from '../winston';
+import config from '../config/config';
 
 let router = Express.Router();
 
@@ -16,10 +18,12 @@ router.route('/project')
 			  })
 			  .save()
 			  .then(function(result) {
+			  	logger.log(config.log.level, 'ROUTE CALLED: /project; RESULT: ' + result);
 			  	res.send(result);
 			  })
 			  .catch((err) => {
-				  res.sendStatus(400);
+			  	logger.log(config.log.level, 'ROUTE CALLED: /project; RESULT: 400');
+				res.sendStatus(400);
 			  })
 
 		})
@@ -28,10 +32,12 @@ router.route('/project')
 			try{
 				Model.Project.findAll()
 				.then(function(result) {
+					logger.log(config.log.level, 'ROUTE CALLED: /project; RESULT: ' + result);
 					res.send(result);
 				})
 			}
 			catch(error) {
+				logger.log(config.log.level, 'ROUTE CALLED: /project; RESULT: ' + error);
 				res.send(error);
 			}
 			
@@ -46,8 +52,10 @@ router.route('/showProjectDetails')
 					}
 				})
 				.then(function(result) {
+					logger.log(config.log.level, 'ROUTE CALLED: /showProjectDetails; RESULT: ' + result);
 					res.send(result);
 				}).catch((err) => {
+					logger.log(config.log.level, 'ROUTE CALLED: /showProjectDetails; RESULT: 400');
 				  	res.sendStatus(400);
 				})
 			}
@@ -67,8 +75,10 @@ router.route('/showEditableProjectFields')
 					attributes: ['Title', 'Gitlink', 'Description']
 				})
 				.then(function(result) {
+					logger.log(config.log.level, 'ROUTE CALLED: /showEditableProjectFields; RESULT: ' + result);
 					res.send(result);
 				}).catch((err) => {
+					logger.log(config.log.level, 'ROUTE CALLED: /showEditableProjectFields; RESULT: 400');
 				  	res.sendStatus(400);
 				})
 			}
@@ -92,8 +102,10 @@ router.route('/editProject')
 					}
 				})
 				.then(function(result) {
+					logger.log(config.log.level, 'ROUTE CALLED: /editProject; RESULT: ' + result);
 					res.send(result);
 				}).catch((err) => {
+					logger.log(config.log.level, 'ROUTE CALLED: /editProject; RESULT: 400');
 				  	res.sendStatus(400);
 				})
 			}
