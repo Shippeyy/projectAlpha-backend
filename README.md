@@ -1,5 +1,5 @@
 # Table of Content
-- [projectAlpha](#projectalpha)
+- [projectAlpha-backend](#projectalpha-backend)
   * [Getting Started](#getting-started)
     + [Prerequisites](#prerequisites)
       - [Nodejs + npm](#nodejs---npm)
@@ -20,11 +20,10 @@
     + [/getCurrentUser](#-getcurrentuser)
   * [Authors](#authors)
   * [License](#license)
-  * [Acknowledgments](#acknowledgments)
 
-# projectAlpha
+# projectAlpha-backend
 
-private project for learning best practices for Nodejs and webservices in general
+This is a project which aims to get expertise in best practices for Nodejs and webservices in general. The frontend part can be found here https://github.com/Shippeyy/projectAlpha-frontend
 
 ## Getting Started
 
@@ -203,13 +202,9 @@ XYZ.sync({force: true});
 ------
 ## Authors
 
-* **Julian Palmanshofer** -  [Shippeyy](https://github.com/Shippeyy)
+* **Julian Präsent** -  [Shippeyy](https://github.com/Shippeyy)
 
 ## License
 
 This project is licensed under the MIT License - see the [LICENSE.md](LICENSE.md) file for details
-
-## Acknowledgments
-
-* Hat tip to anyone who's code was used (for example third party libraries)
 
