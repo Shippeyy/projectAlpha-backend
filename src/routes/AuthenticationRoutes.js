@@ -4,6 +4,7 @@ import Utils from '../utils';
 import authenticationHelper from '../helpermethods/AuthenticationHelper';
 import logger from '../winston';
 import config from '../config/config';
+import passport from '../authentication/Auth';
 
 let router = Express.Router();
 
@@ -19,8 +20,9 @@ router.route('/auth/login')
 			  	let hash = authenticationHelper.hashPasswordWithSalt(req.body.password, result.Salt);
 			  	if(hash==result.Password) {
 			  		req.session.userguid = result.GUID;
-			  		req.session.cookie.maxAge = 24 * 60 * 60 * 1000;
+			  		res.locals.userguid = result.GUID;
 			  		logger.log(config.log.level, 'ROUTE CALLED: /auth/login; RESULT: 200');
+			  		console.log(req.session.userguid);
 			  		res.sendStatus(200);
 
 			  	}
@@ -30,6 +32,7 @@ router.route('/auth/login')
 			  	}
 			  })
 			  .catch((err) => {
+			  	console.log(err);
 			  		logger.log(config.log.level, 'ROUTE CALLED: /auth/login; RESULT: 400');
 				  	res.sendStatus(400);
 				})

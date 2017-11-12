@@ -70,4 +70,4 @@ lib/
 *.pub
 *.ppk
 
-config.js
+src/config/config.js

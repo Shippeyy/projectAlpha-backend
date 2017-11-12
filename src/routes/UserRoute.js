@@ -182,10 +182,13 @@ router.route('/getCurrentUser')
 		.get(function(req, res) {
 			try{
 				if(!req.session.userguid) {
+					console.log(req.session);
+					console.log(req.session.userguid);
 					logger.log(config.log.level, 'ROUTE CALLED: /getCurrentUser; RESULT: 401');
 					res.sendStatus(401);
 				}
 				else {
+					console.log(req.session.userguid)
 					logger.log(config.log.level, 'ROUTE CALLED: /getCurrentUser; RESULT: ' + req.session.userguid);
 					res.send(req.session.userguid);
 				}	
